@@ -22,9 +22,4 @@ This script uses the `requests` library to make HTTP requests to the AnkiConnect
 ```bash
 pip install requests
 
-## Run the Script
 
-To run the script and create the Anki deck from your word list, use the following command in your terminal:
-
-```bash
-python anki.py
