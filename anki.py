@@ -22,8 +22,8 @@ def create_deck_if_not_exists(deck_name):
 def add_word_to_anki(deck_name, front, back):
     """Add a word to the specified Anki deck."""
     note = {
-        "deckName": deck_name,  # Include deckName directly here
         "modelName": "Basic",
+        "deckName": deck_name,  # Specify the deck name here
         "fields": {
             "Front": front,
             "Back": back
@@ -34,60 +34,43 @@ def add_word_to_anki(deck_name, front, back):
         }
     }
 
-    response = invoke("addNote", {"note": note})
+    # API call with the note only
+    response = invoke("addNote", {"note": note})  # Removed deckName from here
     if response["error"] is None:
         print(f"Successfully added: {front}")
     else:
         print(f"Error adding {front}: {response['error']}")
 
 def main():
-    deck_name = "phrase"
+    deck_name = "Question_finish"
     
     # Create the deck if it doesn't exist
     create_deck_if_not_exists(deck_name)
 
-    # Word list to add to Anki
+    # Word list with Finnish sentences on front and English translations on back
     word_list = [
-        {"front": "varo!", "back": "watch out!"},
-        {"front": "apua!", "back": "help!"},
-        {"front": "tulipalo!", "back": "fire!"},
-        {"front": "varas!", "back": "thief!"},
-        {"front": "poliisi", "back": "police"},
-        {"front": "ambulanssi", "back": "ambulance"},
-        {"front": "vaara", "back": "danger"},
-        {"front": "seis", "back": "stop"},
-        {"front": "huomio!", "back": "attention!"},
-        {"front": "rikki", "back": "broken"},
-        {"front": "epäkunnossa", "back": "out of order"},
-        {"front": "kielletty", "back": "forbidden (pic)"},
-        {"front": "suljettu", "back": "closed"},
-        {"front": "eksynyt", "back": "lost"},
-        {"front": "mene pois!", "back": "go away!"},
-        {"front": "en ymmärrä", "back": "I don’t understand"},
-        {"front": "myydään", "back": "for sale"},
-        {"front": "vuokrataan", "back": "for rent"},
-        {"front": "varattu", "back": "reserved"},
-        {"front": "vapaa", "back": "free"},
-        {"front": "ilmainen", "back": "free of charge (pic)"},
-        {"front": "sisään", "back": "entrance “in” (pic)"},
-        {"front": "ulos", "back": "exit “out”"},
-        {"front": "varauloskäynti", "back": "emergency exit"},
-        {"front": "ei sisäänkäyntiä", "back": "no entry"},
-        {"front": "ale", "back": "sales"},
-        {"front": "hissi", "back": "elevator (pic)"},
-        {"front": "rullaportaat", "back": "escalator"},
-        {"front": "taksi", "back": "taxi"},
-        {"front": "avoinna ma-pe", "back": "open Mon-Fri"},
-        {"front": "suljettu la-su", "back": "closed Sat-Sun"},
-        {"front": "vedä", "back": "pull"},
-        {"front": "työnnä", "back": "push"},
-        {"front": "loppuunmyynti", "back": "final sales"},
-        {"front": "loppuunmyyty", "back": "sold out"},
-        {"front": "vuoronumero", "back": "queue number"},
-        {"front": "WC N", "back": "ladies bathroom"},
-        {"front": "WC M", "back": "men’s bathroom"},
-        {"front": "tervetuloa", "back": "welcome"},
-        {"front": "läpikulku kielletty", "back": "no thoroughfare"},
+        {"front": "Missä hotelli Sokos on?", "back": "Where is the Sokos hotel?"},
+        {"front": "Missä Itsenäisyydenkatu on?", "back": "Where is the street Itsenäisyydenkatu?"},
+        {"front": "Missä sairaala on?", "back": "Where is the hospital?"},
+        {"front": "Missä vessa on?", "back": "Where is the toilet?"},
+        {"front": "Missä naisten vessa on?", "back": "Where is the ladies toilet?"},
+        {"front": "Missä miesten vessa on?", "back": "Where is the men’s toilet?"},
+        {"front": "Entä muuta? (in the store)", "back": "Do you want anything else?"},
+        {"front": "Kuittia? (in the store)", "back": "Do you want the receipt?"},
+        {"front": "Mitä saisi olla? (in the store)", "back": "What would you like?"},
+        {"front": "Minkämaalainen sinä olet?", "back": "What nationality are you?"},
+        {"front": "Puhutko englantia?", "back": "Do you speak English?"},
+        {"front": "Voisitko puhua englantia?", "back": "Could you speak English?"},
+        {"front": "Puhuuko kukaan täällä englantia?", "back": "Does anyone speak English here?"},
+        {"front": "Voisitko kirjoittaa sen ylös?", "back": "Could you write that down?"},
+        {"front": "Voisitko toistaa?", "back": "Could you please repeat that?"},
+        {"front": "Voisitko auttaa minua?", "back": "Could you help me?"},
+        {"front": "Mitä kuuluu?", "back": "How are you?"},
+        {"front": "Oletko kunnossa?", "back": "Are you okay?"},
+        {"front": "Onko tämä paikka vapaa?", "back": "Is this spot free?"},
+        {"front": "Missä saan tupakoida?", "back": "Where am I allowed to smoke?"},
+        {"front": "Saisinko vettä?", "back": "Could I get some water?"},
+        {"front": "Paljonko se maksaa?", "back": "How much does it cost?"}
     ]
 
     # Add words to the deck
