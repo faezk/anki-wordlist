@@ -42,7 +42,7 @@ def add_word_to_anki(deck_name, front, back):
         print(f"Error adding {front}: {response['error']}")
 
 def main():
-    deck_name = "Question_finish"
+    deck_name = "Finish question word"
     
     # Create the deck if it doesn't exist
     create_deck_if_not_exists(deck_name)
