@@ -2,6 +2,10 @@
 
 Create an Anki deck from your word list using Python.
 
+## Benefits
+
+This script simplifies the process of adding vocabulary to Anki. Instead of adding each word one by one, you can easily upload your entire word list at once. This not only saves time but also ensures a more efficient study process, allowing you to focus on learning rather than data entry. Additionally, you can export your decks and share them with others, making collaborative learning easy and effective.
+
 ## Installation Instructions
 
 ### 1. Install AnkiConnect
