@@ -22,6 +22,7 @@ def create_deck_if_not_exists(deck_name):
 def add_word_to_anki(deck_name, front, back):
     """Add a word to the specified Anki deck."""
     note = {
+        "deckName": deck_name,  # Include deckName directly here
         "modelName": "Basic",
         "fields": {
             "Front": front,
@@ -32,7 +33,7 @@ def add_word_to_anki(deck_name, front, back):
             "allowDuplicate": False
         }
     }
-    
+
     response = invoke("addNote", {"note": note})
     if response["error"] is None:
         print(f"Successfully added: {front}")
@@ -40,22 +41,53 @@ def add_word_to_anki(deck_name, front, back):
         print(f"Error adding {front}: {response['error']}")
 
 def main():
-    deck_name = "MyWordList"
+    deck_name = "phrase"
     
     # Create the deck if it doesn't exist
     create_deck_if_not_exists(deck_name)
 
     # Word list to add to Anki
     word_list = [
-        {"front": "banaani", "back": "banana"},
-        {"front": "baari", "back": "bar"},
-        {"front": "bussi", "back": "bus"},
-        {"front": "elefantti", "back": "elephant"},
-        {"front": "energia", "back": "energy"},
-        {"front": "faksi", "back": "taxi"},
-        {"front": "filmi", "back": "film"},
-        {"front": "galleria", "back": "gallery"},
-        {"front": "gangsteri", "back": "gangster"}
+        {"front": "varo!", "back": "watch out!"},
+        {"front": "apua!", "back": "help!"},
+        {"front": "tulipalo!", "back": "fire!"},
+        {"front": "varas!", "back": "thief!"},
+        {"front": "poliisi", "back": "police"},
+        {"front": "ambulanssi", "back": "ambulance"},
+        {"front": "vaara", "back": "danger"},
+        {"front": "seis", "back": "stop"},
+        {"front": "huomio!", "back": "attention!"},
+        {"front": "rikki", "back": "broken"},
+        {"front": "epäkunnossa", "back": "out of order"},
+        {"front": "kielletty", "back": "forbidden (pic)"},
+        {"front": "suljettu", "back": "closed"},
+        {"front": "eksynyt", "back": "lost"},
+        {"front": "mene pois!", "back": "go away!"},
+        {"front": "en ymmärrä", "back": "I don’t understand"},
+        {"front": "myydään", "back": "for sale"},
+        {"front": "vuokrataan", "back": "for rent"},
+        {"front": "varattu", "back": "reserved"},
+        {"front": "vapaa", "back": "free"},
+        {"front": "ilmainen", "back": "free of charge (pic)"},
+        {"front": "sisään", "back": "entrance “in” (pic)"},
+        {"front": "ulos", "back": "exit “out”"},
+        {"front": "varauloskäynti", "back": "emergency exit"},
+        {"front": "ei sisäänkäyntiä", "back": "no entry"},
+        {"front": "ale", "back": "sales"},
+        {"front": "hissi", "back": "elevator (pic)"},
+        {"front": "rullaportaat", "back": "escalator"},
+        {"front": "taksi", "back": "taxi"},
+        {"front": "avoinna ma-pe", "back": "open Mon-Fri"},
+        {"front": "suljettu la-su", "back": "closed Sat-Sun"},
+        {"front": "vedä", "back": "pull"},
+        {"front": "työnnä", "back": "push"},
+        {"front": "loppuunmyynti", "back": "final sales"},
+        {"front": "loppuunmyyty", "back": "sold out"},
+        {"front": "vuoronumero", "back": "queue number"},
+        {"front": "WC N", "back": "ladies bathroom"},
+        {"front": "WC M", "back": "men’s bathroom"},
+        {"front": "tervetuloa", "back": "welcome"},
+        {"front": "läpikulku kielletty", "back": "no thoroughfare"},
     ]
 
     # Add words to the deck
